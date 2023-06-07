@@ -1,5 +1,6 @@
 package lab12;
 
+import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 
 /**
@@ -14,11 +15,7 @@ import java.io.FileOutputStream;
  *
  */
 
-public class DataOutputStream {
-
-	public DataOutputStream(FileOutputStream fileOutputStream) {
-		// TODO Auto-generated constructor stub
-	}
+public class RainfallGenerator {
 
 	public static void main(String[] args) {
 		
@@ -58,24 +55,5 @@ public class DataOutputStream {
 		System.out.println("End of program. Check out " + outFile); 
 	}
 
-	private void close() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void flush() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void writeDouble(double d) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void writeUTF(String string) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
