@@ -1,5 +1,6 @@
 package lab12;
 
+import java.io.DataInputStream;
 import java.io.FileInputStream;
 
 /**
@@ -10,12 +11,12 @@ import java.io.FileInputStream;
  * 
  * The program calculates the average 6 days reading of daily rainfall and display it on the console.
  * 
- * @author
+ * @author raszreen
  *
  */
-public class DataInputStream {
+public class RainfallReader {
 
-	public DataInputStream(FileInputStream fileInputStream) {
+	public RainfallReader(FileInputStream fileInputStream) {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -56,7 +57,7 @@ public class DataInputStream {
 			double averagedailyRainfall = TotalRainfall / noOfRecords;
 			String formattedAverage = String.format("%.1f", averagedailyRainfall);
 			System.out.print("\nAverage daily Rainfall for " + noOfRecords 
-					+ " states: " + formattedAverage + "%");
+					+ " days: " + formattedAverage + "%");
 			
 		} catch (Exception ex) {
 			
@@ -69,24 +70,5 @@ public class DataInputStream {
 
 	}
 
-	private void close() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private double readDouble() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	private String readUTF() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private int available() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }
