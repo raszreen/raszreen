@@ -16,10 +16,6 @@ import java.io.FileInputStream;
  */
 public class RainfallReader {
 
-	public RainfallReader(FileInputStream fileInputStream) {
-		// TODO Auto-generated constructor stub
-	}
-
 	public static void main(String[] args) {
 
 		// 1. Declare output file 
@@ -45,7 +41,7 @@ public class RainfallReader {
 				dailyRainfall = dis.readDouble();
 				System.out.println( state + "\t" + dailyRainfall);
 				
-				// Calculate total utilization
+				// Calculate total dailyRainfall
 				TotalRainfall += dailyRainfall;
 				noOfRecords ++;
 			}
