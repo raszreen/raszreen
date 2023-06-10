@@ -1,0 +1,87 @@
+package lab12;
+
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+
+/**
+ * This program demonstrate reading byte-based data as it intended type 
+ * it is using DataInputStream.
+ * 
+ * The data represent a 6 days reading of daily rainfall from two stations in each district in Melaka
+ * 
+ * The program calculates the average 6 days reading of daily rainfall and display it on the console.
+ * 
+ * @author raszreen
+ *
+ */
+public class RainfallReader {
+
+	public static void main(String[] args) {
+
+		// 1. Declare output file 
+		String sourceFile = "rainFallMelaka.txt";
+		System.out.println("Reading data from " + sourceFile + "\n");
+		System.out.println("Days \t" + "id \t" + "\t\t Station \t" + "\t District" + "\tDaily Rainfall \n");
+
+		try {
+
+			// 2. Create stream to read data
+			DataInputStream dis = new DataInputStream(new FileInputStream(sourceFile));
+
+			// Variables for processing byte-based data
+			double dailyRainfallJasin = 0;
+			double dailyRainfallMelakaTengah = 0;
+			double TotalRainfallJasin = 0;
+			double TotalRainfallMT = 0;
+			int noOfRecordsJasin = 0;
+			int noOfRecordsMT = 0;
+			String days = "";
+			
+			while(dis.available() > 0) {
+				
+				days = dis.readUTF();
+				dailyRainfallJasin = dis.readDouble();
+				System.out.println(days + "\t" + "2125002 \t" + "\tTelok Rimba \t" + "\tJasin \t\t"  + dailyRainfallJasin + "\n");
+				
+				// Read data for Melaka Tengah
+				dailyRainfallMelakaTengah = dis.readDouble();
+				System.out.println(days + "\t" + "0300061RF \t" + "Bukit Katil, Sg. Duyong \t" + "Melaka Tengah \t"  + dailyRainfallMelakaTengah + "\n");
+				System.out.println("============================================================================================= \n");
+				
+				// Calculate total dailyRainfall Jasin
+				TotalRainfallJasin += dailyRainfallJasin;
+				noOfRecordsJasin ++;
+				
+				// Calculate total dailyRainfall Melaka Tengah
+				TotalRainfallMT += dailyRainfallMelakaTengah;
+				noOfRecordsMT ++;
+			}
+			
+			// 4. Close stream
+			dis.close();
+			
+			// Calculate average dailyRainfall for Jasin
+			double averagedailyRainfallJasin = TotalRainfallJasin / noOfRecordsJasin;
+			String formattedAverage = String.format("%.1f", averagedailyRainfallJasin);
+			System.out.print("\nAverage daily Rainfall for Jasin " + noOfRecordsJasin 
+					+ " days: " + formattedAverage + "%");
+			
+			// Calculate average dailyRainfall for Melaka Tengah
+			double averagedailyRainfallMelakaTengah = TotalRainfallMT / noOfRecordsMT;
+			String formattedAverage1 = String.format("%.1f", averagedailyRainfallMelakaTengah);
+			System.out.print("\nAverage daily Rainfall for Jasin " + noOfRecordsMT
+					+ " days: " + formattedAverage1 + "%");
+			
+		} catch (Exception ex) {
+			
+			ex.printStackTrace();
+		}
+
+		// Indicate end of program - Could be successful
+		System.out.println("\nEnd of program.");
+		
+
+	}
+
+
+}
