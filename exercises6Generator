@@ -1,0 +1,75 @@
+package lab12;
+
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+
+/**
+ * This program demonstrate reading byte-based data as it intended type 
+ * it is using DataInputStream.
+ * 
+ * The data represent a 6 days reading of daily rainfall from two stations in each district in Melaka
+ * 
+ * The program calculates the average 6 days reading of daily rainfall and display it on the console.
+ * 
+ * @author raszreen
+ *
+ */
+
+public class RainfallGenerator {
+
+	public static void main(String[] args) {
+		
+		
+		// 1. Declare output file 
+		String outFile = "rainFallMelaka.txt";
+		
+		// Data declaration
+		String id [] = {"2125002", "0300061RF"};
+		String stationName [] = {"Telok Rimba", "Bukit Katil, Sg. Duyong"};
+		String districtName [] = {"Jasin", "Melaka Tengah"};
+		String days[] = {"2/6","3/6","4/6","5/6","6/6","7/6"};
+		double dailyRainfallJasin[] = {0.0, 0.0, 1.0, 1.0, 69.0, 53.0};
+		double dailyRainfallMelakaTengah[] = {0.0, 0.0, 0.5, 0.0, 37.5, 23.5};
+		
+		try {
+			
+			// 2. Create stream to read data
+			DataOutputStream dos = new DataOutputStream(new FileOutputStream(outFile));
+			
+			// Process data
+			for (int index = 0; index < days.length; index++) {
+				
+				// 3. Write data into data stream
+				dos.writeUTF(days[index]);
+				dos.writeDouble(dailyRainfallJasin[index]);
+				dos.writeDouble(dailyRainfallMelakaTengah[index]);
+				
+				// 4. Flush for each writing
+				dos.flush();
+			}
+			
+            for (int index = 0; index < id.length; index++) {
+				
+				// 5. Write data into data stream
+				dos.writeChars(id[index]);
+				dos.writeChars(stationName[index]);
+				dos.writeChars(districtName[index]);
+				
+				// 6. Flush for each writing
+				dos.flush();
+			}
+			
+			// 7. Close stream
+			dos.close();
+			
+		} catch (Exception ex) {
+			
+			ex.printStackTrace();
+		}
+		
+		// Indicate end of program - Could be successful
+		System.out.println("End of program. Check out " + outFile); 
+	}
+
+
+}
